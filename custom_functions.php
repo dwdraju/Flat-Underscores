@@ -20,18 +20,18 @@ function enqueue_styles_scripts() {
     //register styles: wp_register_style( $handle, $src, $deps, $ver, $media );    
     wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/assets/css/bootstrap.min.css','','', 'all' );
     wp_register_style( 'fontawesome-css', get_template_directory_uri() . '/assets/css/font-awesome.min.css','','', 'all' );
-    wp_register_style( 'main-css', get_template_directory_uri() . '/assets/css/main.css','','', 'all' );
     wp_register_style( 'prettyPhoto-css', get_template_directory_uri() . '/assets/css/prettyPhoto.css','','', 'all' );
     wp_register_style( 'animate-css', get_template_directory_uri() . '/assets/css/animate.css','','', 'all' );
+    wp_register_style( 'main-css', get_template_directory_uri() . '/assets/css/main.css','','', 'all' );
     wp_register_style( 'style', get_template_directory_uri() . '/style.css','','', 'all' );
 
 
     //enqueue styles: wp_enqueue_style($handle);	
     wp_enqueue_style('bootstrap-css');
-    wp_enqueue_style('fontawesome-css');
-    wp_enqueue_style('main-css');
+    wp_enqueue_style('fontawesome-css');    
     wp_enqueue_style('prettyPhoto-css');
     wp_enqueue_style('animate-css');
+    wp_enqueue_style('main-css');
     wp_enqueue_style('style');
 
  
@@ -55,7 +55,8 @@ if( !function_exists('fu_ie_scripts')) {
 
 // Extension of nav menus
 register_nav_menus( array(
-        'footer-menu' => __( 'Footer Menu', 'flat-underscores' ),   
-        'social'  => __( 'Social Links Menu', 'flat-underscores' ),
+        'footer-menu'   => __( 'Footer Menu', 'flat-underscores' ),   
+        'social'        => __( 'Social Links Menu', 'flat-underscores' ),
+        'company'       => __('Company Links Menu','flat-underscores'),
     ) );
 ?>
