@@ -7,7 +7,7 @@ function enqueue_styles_scripts() {
 
     //register srcipts: wp_register_script( $handle, $src, $deps, $ver, $in_footer ); 
     wp_register_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery.js','', '', 'true');
-	wp_register_script( 'bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', '', '', 'true');
+    wp_register_script( 'bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', '', '', 'true');
     wp_register_script( 'prettyPhoto-js', get_template_directory_uri() . '/assets/js/jquery.prettyPhoto.js', '', '', 'true');
     wp_register_script( 'main-js', get_template_directory_uri() . '/assets/js/main.js', '', '', 'true');
 
@@ -34,7 +34,7 @@ function enqueue_styles_scripts() {
     wp_enqueue_style('main-css');
     wp_enqueue_style('style');
 
- 
+    
 } 
 add_action( 'wp_enqueue_scripts', 'enqueue_styles_scripts' );
 
@@ -55,9 +55,9 @@ if( !function_exists('fu_ie_scripts')) {
 
 // Extension of nav menus
 register_nav_menus( array(
-        'footer-menu'   => __( 'Footer Menu', 'flat-underscores' ),   
-        'social'        => __( 'Social Links Menu', 'flat-underscores' ),
-        'company'       => __('Company Links Menu','flat-underscores'),
+    'footer-menu'   => __( 'Footer Menu', 'flat-underscores' ),   
+    'social'        => __( 'Social Links Menu', 'flat-underscores' ),
+    'company'       => __('Company Links Menu','flat-underscores'),
     ) );
 // Remove ACF Pro plugin update notification
 function filter_plugin_updates( $value ) {

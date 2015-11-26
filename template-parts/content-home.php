@@ -1,17 +1,22 @@
 <?php
 /**
- * Template part for displaying home page content in page-home.php
- *
- * @link https://codex.wordpress.org/Template_Hierarchy
- *
- * @package Flat_Underscores
- */
+* Template part for displaying home page content in page-home.php
+*
+* @link https://codex.wordpress.org/Template_Hierarchy
+*
+* @package Flat_Underscores
+*/
 ?>
 
 <?php
-	//Advanced Custom Field
-	$latest_project_header = get_field('latest_project_header_title');
-	$latest_project_desc   = get_field('latest_project_header_description');
+//Advanced Custom Field Latest Project
+$latest_project_header 	=	get_field('latest_project_header_title');
+$latest_project_desc    = 	get_field('latest_project_header_description');
+
+//Advanced Custom Field Testimonial
+$testimonial_header		=	get_field('home_testimonial_title');
+$testimonial_desc 		=	get_field('home_testimonial_description');
+
 ?>
 <section id="main-slider" class="no-margin">
 	<div class="carousel slide wet-asphalt">
@@ -121,35 +126,38 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
-			<?php if(!empty($latest_project_header)):
-			?>
+				<?php if(!empty($latest_project_header)):
+				?>
 				<h3><?php echo $latest_project_header; ?></h3>
 			<?php endif;?>
 			<?php if(!empty($latest_project_desc)):?>
 				<p><?php echo $latest_project_desc ?></p>
 			<?php endif;?>	
-				<div class="btn-group">
-					<a class="btn btn-danger" href="#scroller" data-slide="prev"><i class="icon-angle-left"></i></a>
-					<a class="btn btn-danger" href="#scroller" data-slide="next"><i class="icon-angle-right"></i></a>
-				</div>
-				<p class="gap"></p>
+			<div class="btn-group">
+				<a class="btn btn-danger" href="#scroller" data-slide="prev"><i class="icon-angle-left"></i></a>
+				<a class="btn btn-danger" href="#scroller" data-slide="next"><i class="icon-angle-right"></i></a>
 			</div>
-			<div class="col-md-9">
-				<div id="scroller" class="carousel slide">
-					<div class="carousel-inner">
-						<div class="item active">
-							<div class="row">
+			<p class="gap"></p>
+		</div>
+		<div class="col-md-9">
+			<div id="scroller" class="carousel slide">
+				<div class="carousel-inner">
+					<!-- Active Item, preferred =3 -->
+					<div class="item active">
+						<div class="row">
 							<?php if(have_rows('latest_projects')): ?>
 								<?php while(have_rows('latest_projects')): the_row();
 								$pr_image=get_sub_field('latest_project_image');
 								$pr_title=get_sub_field('latest_project_title'); 
 								$pr_f_image=get_sub_field('latest_project_full_image');
-								?>
+							//Check active state - true/false
+								if(get_sub_field('latest_project_active')):
+									?>
 								
 								<div class="col-xs-4">
 									<div class="portfolio-item">
 										<div class="item-inner">
-											<img class="img-responsive" src="<?php echo $pr_image['url'];?>" alt="">
+											<img class="img-responsive" src="<?php echo $pr_image['url'];?>" alt="<?php echo $pr_image['alt'];?>">
 											<h5>
 												<?php if($pr_title): echo $pr_title; endif; ?>
 											</h5>
@@ -159,59 +167,47 @@
 										</div>
 									</div>
 								</div> 
-							<?php endwhile;?>
+							<?php endif ;endwhile;?>
 						<?php endif; ?>
 
-							</div><!--/.row-->
-						</div><!--/.item-->
-						<div class="item">
-							<div class="row">
-								<div class="col-xs-4">
-									<div class="portfolio-item">
-										<div class="item-inner">
-											<img class="img-responsive" src="<?php bloginfo('stylesheet_directory');?>/assets/images/portfolio/recent/item2.png" alt="">
-											<h5>
-												Flat Theme - Business Theme
-											</h5>
-											<div class="overlay">
-												<a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
-											</div>
+					</div><!--/.row-->
+				</div><!--/.item active-->
+				<!-- Inactive items -->
+				<div class="item">
+					<div class="row">
+						<?php if(have_rows('latest_projects')): ?>
+							<?php while(have_rows('latest_projects')): the_row();
+
+							$pr_image	 	=	get_sub_field('latest_project_image');
+							$pr_title 		=	get_sub_field('latest_project_title'); 
+							$pr_f_image 	=	get_sub_field('latest_project_full_image');				
+								//Check active state - true/false
+							if(!get_sub_field('latest_project_active')): ?>								
+							<div class="col-xs-4">
+								<div class="portfolio-item">
+									<div class="item-inner">
+										<img class="img-responsive" src="<?php echo $pr_image['url'];?>" alt="<?php echo $pr_image['alt'];?>">
+										<h5>
+											<?php if($pr_title): echo $pr_title; endif; ?>
+										</h5>
+										<div class="overlay">
+											<a class="preview btn btn-danger" title="<?php if($pr_title): echo $pr_title; endif; ?>" href="<?php echo $pr_f_image['url'];?>" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
 										</div>
 									</div>
 								</div>
-								<div class="col-xs-4">
-									<div class="portfolio-item">
-										<div class="item-inner">
-											<img class="img-responsive" src="<?php bloginfo('stylesheet_directory');?>/assets/images/portfolio/recent/item1.png" alt="">
-											<h5>
-												Nova - Corporate site template
-											</h5>
-											<div class="overlay">
-												<a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>                            
-								<div class="col-xs-4">
-									<div class="portfolio-item">
-										<div class="item-inner">
-											<img class="img-responsive" src="<?php bloginfo('stylesheet_directory');?>/assets/images/portfolio/recent/item3.png" alt="">
-											<h5>
-												Fornax - Apps site template
-											</h5>
-											<div class="overlay">
-												<a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div><!--/.item-->
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
+							</div> 
+						<?php endif; ?>
+					<?php endwhile;?>
+				<?php endif; ?>
+
+			</div><!--/.row-->
+		</div><!--/.item-->
+		
 	</div>
+</div>
+</div>
+</div><!--/.row-->
+</div>
 </section><!--/#recent-works-->
 
 <section id="testimonial" class="alizarin">
@@ -219,33 +215,34 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="center">
-					<h2>What our clients say</h2>
-					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+					
+					<?php if($testimonial_header): ?>
+						<h2><?php echo $testimonial_header;?></h2>
+					<?php endif; ?>
+					<?php if($testimonial_desc):?>	
+						<p><?php echo $testimonial_desc;?></p>
+					<?php endif; ?>	
 				</div>
 				<div class="gap"></div>
 				<div class="row">
-					<div class="col-md-6">
-						<blockquote>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-							<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-						</blockquote>
-						<blockquote>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-							<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-						</blockquote>
-					</div>
-					<div class="col-md-6">
-						<blockquote>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-							<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-						</blockquote>
-						<blockquote>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-							<small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-						</blockquote>
-					</div>
+					<div>
+						<?php if(have_rows('testimonials')): ?>
+							<?php while(have_rows('testimonials')):the_row();
+							$testifier		=	get_sub_field('home_testifier');
+							$testimonial 	=	get_sub_field('home_testimonial');
+							?>
+							<div class="col-md-6">
+								<blockquote>
+									<p><?php echo $testimonial;?></p>
+									<small><?php echo $testifier;?></small>
+								</blockquote>
+							</div>
+						<?php endwhile;?>
+					<?php endif; ?>
 				</div>
+				
 			</div>
 		</div>
 	</div>
+</div>
 </section><!--/#testimonial-->
