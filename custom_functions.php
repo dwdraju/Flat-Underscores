@@ -59,4 +59,10 @@ register_nav_menus( array(
         'social'        => __( 'Social Links Menu', 'flat-underscores' ),
         'company'       => __('Company Links Menu','flat-underscores'),
     ) );
+// Remove ACF Pro plugin update notification
+function filter_plugin_updates( $value ) {
+    unset( $value->response['acf-pro/acf.php'] );
+    return $value;
+}
+add_filter( 'site_transient_update_plugins', 'filter_plugin_updates' );
 ?>
