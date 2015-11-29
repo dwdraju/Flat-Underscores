@@ -35,75 +35,48 @@
 			</div>
 		</div>
 		<div class="row">
+			<?php $args = array( 'posts_per_page' => 3,'post_type'=>'service','offset'=>3 );
+
+$myposts = get_posts( $args );
+foreach ( $myposts as $post ) : setup_postdata( $post ); 
+
+?>
+
 			<div class="col-md-4 col-sm-6">
 				<div class="media">
 					<div class="pull-left">
-						<i class="icon-windows icon-md"></i>
+						<i class="<?php echo get_post_meta( get_the_ID(),'service-icon',true );?>"></i>
 					</div>
 					<div class="media-body">
-						<h3 class="media-heading">Windows Development</h3>
-						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+						<h3 class="media-heading"><?php the_title();?></h3>
+						<p><?php the_content();?></p>
 					</div>
 				</div>
 			</div><!--/.col-md-4-->
-			<div class="col-md-4 col-sm-6">
-				<div class="media">
-					<div class="pull-left">
-						<i class="icon-android icon-md"></i>
-					</div>
-					<div class="media-body">
-						<h3 class="media-heading">Android Development</h3>
-						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
-					</div>
-				</div>
-			</div><!--/.col-md-4-->
-			<div class="col-md-4 col-sm-6">
-				<div class="media">
-					<div class="pull-left">
-						<i class="icon-apple icon-md"></i>
-					</div>
-					<div class="media-body">
-						<h3 class="media-heading">iOS Development</h3>
-						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
-					</div>
-				</div>
-			</div><!--/.col-md-4-->
+			<?php endforeach; wp_reset_postdata();?>
 		</div><!--/.row-->
 		<div class="gap"></div>
 		<div class="row">
-			<div class="col-md-4 col-sm-6">
+			<?php $args = array( 'posts_per_page' => 3, 'post_type'=>'service','offset'=>6 );
+
+$myposts = get_posts( $args );
+foreach ( $myposts as $post ) : setup_postdata( $post ); 
+
+?>
+
+			
+<div class="col-md-4 col-sm-6">
 				<div class="media">
 					<div class="pull-left">
-						<i class="icon-linux icon-md"></i>
+						<i class="<?php echo get_post_meta( get_the_ID(),'service-icon',true );?>"></i>
 					</div>
 					<div class="media-body">
-						<h3 class="media-heading">Linux Development</h3>
-						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+						<h3 class="media-heading"><?php the_title();?></h3>
+						<p><?php the_content();?></p>
 					</div>
 				</div>
-			</div><!--/.col-md-4-->
-			<div class="col-md-4 col-sm-6">
-				<div class="media">
-					<div class="pull-left">
-						<i class="icon-dribbble icon-md"></i>
-					</div>
-					<div class="media-body">
-						<h3 class="media-heading">Graphic Design</h3>
-						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
-					</div>
-				</div>
-			</div><!--/.col-md-4-->
-			<div class="col-md-4 col-sm-6">
-				<div class="media">
-					<div class="pull-left">
-						<i class="icon-google-plus icon-md"></i>
-					</div>
-					<div class="media-body">
-						<h3 class="media-heading">SEO Services</h3>
-						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
-					</div>
-				</div>
-			</div><!--/.col-md-4-->
+			</div><!--/.col-md-4--><?php endforeach; wp_reset_postdata();?>
+
 		</div><!--/.row-->
 		<hr>
 		<div class="row">
